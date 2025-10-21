@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Castle Eidolon - A brutal Metroidvania roguelike with permanent difficulty escalation">
+    <meta name="keywords" content="roguelike, metroidvania, game, web game, castle eidolon">
+    <meta name="author" content="Castle Eidolon">
+
+    <title>Castle Eidolon - Enter the Living Fortress</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Castle Eidolon">
+    <meta property="og:description" content="A brutal Metroidvania roguelike with permanent difficulty escalation">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../icon.svg">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="header">
+            <h1 class="title">CASTLE EIDOLON</h1>
+            <p class="subtitle">A Living Fortress Awaits</p>
+        </header>
+
+        <!-- Game Info Section -->
+        <section class="info-section">
+            <div class="info-card">
+                <h3>⚔️ About the Game</h3>
+                <p>You are an eternal challenger in Eidolon Castle, a living fortress corrupted by ancient magic. The castle adapts relentlessly through the <strong>Castle Pressure Index (CPI)</strong> — a measure of how much your power threatens its dominion.</p>
+            </div>
+
+            <div class="info-grid">
+                <div class="feature">
+                    <h4>🏰 No Checkpoints</h4>
+                    <p>Death returns you to the entrance. Every run counts.</p>
+                </div>
+                <div class="feature">
+                    <h4>📈 Permanent Escalation</h4>
+                    <p>CPI never resets. The castle grows stronger forever.</p>
+                </div>
+                <div class="feature">
+                    <h4>⚡ Deep Combat</h4>
+                    <p>Light, balanced, heavy, ranged, and hybrid weapons.</p>
+                </div>
+                <div class="feature">
+                    <h4>🎯 Adaptive AI</h4>
+                    <p>Enemies mutate and evolve with rising CPI.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Controls Section -->
+        <section class="controls-section">
+            <h3>🎮 Controls</h3>
+            <div class="controls-grid">
+                <div class="control">
+                    <span class="key">A / D</span>
+                    <span class="action">Move Left / Right</span>
+                </div>
+                <div class="control">
+                    <span class="key">W / Space</span>
+                    <span class="action">Jump</span>
+                </div>
+                <div class="control">
+                    <span class="key">Shift</span>
+                    <span class="action">Dodge Roll</span>
+                </div>
+                <div class="control">
+                    <span class="key">Left Click</span>
+                    <span class="action">Attack</span>
+                </div>
+                <div class="control">
+                    <span class="key">Right Click</span>
+                    <span class="action">Block</span>
+                </div>
+                <div class="control">
+                    <span class="key">E</span>
+                    <span class="action">Interact</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Game Canvas Section -->
+        <section class="game-section">
+            <div id="game-container">
+                <div id="loading-screen">
+                    <div class="spinner"></div>
+                    <p>Loading Castle Eidolon...</p>
+                    <p class="loading-subtext">Preparing the living fortress...</p>
+                </div>
+
+                <!-- Godot canvas will be inserted here -->
+                <canvas id="canvas">
+                    Your browser does not support HTML5 canvas.
+                </canvas>
+
+                <!-- Fullscreen Button -->
+                <button id="fullscreen-btn" title="Toggle Fullscreen">⛶</button>
+            </div>
+
+            <!-- System Requirements -->
+            <div class="sys-req">
+                <p><strong>Requirements:</strong> Modern browser with WebGL 2.0 support (Chrome, Firefox, Edge recommended)</p>
+                <p><strong>Note:</strong> First load may take 30-60 seconds to download game assets</p>
+            </div>
+        </section>
+
+        <!-- Warning Section -->
+        <section class="warning-section">
+            <h3>⚠️ Warning</h3>
+            <p>This game features <strong>permanent difficulty escalation</strong>. Every death makes the castle stronger. There is no easy mode. There is no reset. Only mastery and adaptation.</p>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Castle Eidolon © 2024 | Built with Godot Engine</p>
+            <p class="footer-links">
+                <a href="https://github.com/yourusername/castle-eidolon" target="_blank">GitHub</a> |
+                <a href="#" id="about-link">About</a> |
+                <a href="#" id="credits-link">Credits</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Godot Engine Loader Script -->
+    <script src="index.js"></script>
+
+    <!-- Custom Game Loader -->
+    <script>
+        const canvas = document.getElementById('canvas');
+        const loadingScreen = document.getElementById('loading-screen');
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+
+        // Initialize Godot Engine when available
+        if (typeof Engine !== 'undefined') {
+            const engine = new Engine();
+
+            engine.init().then(() => {
+                return engine.startGame({
+                    'executable': 'index',
+                    'canvas': canvas,
+                    'canvasResizePolicy': 2, // Adaptive
+                    'onProgress': (current, total) => {
+                        if (total > 0) {
+                            const percent = Math.floor((current / total) * 100);
+                            const subtext = document.querySelector('.loading-subtext');
+                            if (subtext) {
+                                subtext.textContent = `Loading assets... ${percent}%`;
+                            }
+                        }
+                    }
+                });
+            }).then(() => {
+                // Hide loading screen when game starts
+                loadingScreen.style.display = 'none';
+                canvas.style.display = 'block';
+                fullscreenBtn.style.display = 'block';
+                console.log('Castle Eidolon loaded successfully!');
+            }).catch((err) => {
+                console.error('Error loading game:', err);
+                loadingScreen.innerHTML = `
+                    <p style="color: #ff4444;">Failed to load game</p>
+                    <p style="font-size: 0.9em;">${err.message}</p>
+                    <p style="font-size: 0.8em;">Try refreshing the page or using a different browser</p>
+                `;
+            });
+        } else {
+            // Fallback if Godot engine not available
+            loadingScreen.innerHTML = `
+                <p style="color: #ff4444;">Game engine not available</p>
+                <p style="font-size: 0.9em;">Please ensure all game files are properly deployed</p>
+            `;
+        }
+
+        // Fullscreen toggle
+        fullscreenBtn.addEventListener('click', () => {
+            const gameContainer = document.getElementById('game-container');
+            if (!document.fullscreenElement) {
+                gameContainer.requestFullscreen().catch(err => {
+                    console.error('Fullscreen error:', err);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        });
+
+        // Update fullscreen button on fullscreen change
+        document.addEventListener('fullscreenchange', () => {
+            if (document.fullscreenElement) {
+                fullscreenBtn.textContent = '⛶';
+                fullscreenBtn.title = 'Exit Fullscreen';
+            } else {
+                fullscreenBtn.textContent = '⛶';
+                fullscreenBtn.title = 'Enter Fullscreen';
+            }
+        });
+    </script>
+</body>
+</html>

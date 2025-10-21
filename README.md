@@ -44,14 +44,56 @@ castle_eidolon/
 └── data/            # JSON configs for weapons, enemies, etc.
 ```
 
-## Building for Steam
+## Building & Deployment
 
-Export as Windows .exe via Godot's export templates.
+### Build for Web (Browser-based)
 
+The game can be played directly in web browsers! **Recommended for easy distribution.**
+
+```bash
+# Build web version
+./build_web.sh
+
+# Test locally
+./serve_web.sh
+# Then open http://localhost:8000
+```
+
+**Deploy to:**
+- GitHub Pages (free)
+- Netlify (free)
+- itch.io (game platform)
+- Your own server
+
+See [WEB_DEPLOYMENT.md](WEB_DEPLOYMENT.md) for detailed deployment guide.
+
+### Build for Windows (Desktop)
+
+Export as Windows .exe using provided build scripts:
+
+```bash
+# Windows
+build_windows.bat
+
+# Linux/Mac
+./build_windows.sh
+```
+
+Or manually via Godot:
 1. Project → Export
 2. Add Windows Desktop preset
 3. Export Project
-4. Upload to Steamworks
+4. Upload to Steam/itch.io
+
+### Build for Other Platforms
+
+Godot supports exporting to:
+- Linux
+- macOS
+- Android
+- iOS
+
+Configure export presets in Godot Editor.
 
 ## License
 
