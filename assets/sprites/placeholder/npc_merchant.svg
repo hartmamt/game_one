@@ -1,0 +1,18 @@
+<svg width="56" height="64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Merchant NPC -->
+  <!-- Head -->
+  <circle cx="28" cy="16" r="9" fill="#E8B896" stroke="#8B6F47" stroke-width="2"/>
+  <!-- Hat -->
+  <path d="M 15 16 Q 28 8 41 16 L 38 12 L 18 12 Z" fill="#8B4513" stroke="#654321" stroke-width="1.5"/>
+  <!-- Body (robe) -->
+  <path d="M 18 25 L 38 25 L 40 50 L 16 50 Z" fill="#9B59B6" stroke="#6C3483" stroke-width="2"/>
+  <!-- Arms -->
+  <line x1="18" y1="30" x2="12" y2="40" stroke="#E8B896" stroke-width="4" stroke-linecap="round"/>
+  <line x1="38" y1="30" x2="44" y2="40" stroke="#E8B896" stroke-width="4" stroke-linecap="round"/>
+  <!-- Money bag -->
+  <ellipse cx="44" cy="42" rx="5" ry="6" fill="#F1C40F" stroke="#D4AF37" stroke-width="1.5"/>
+  <text x="42" y="45" font-size="10" fill="#8B4513">$</text>
+  <!-- Legs -->
+  <line x1="24" y1="50" x2="22" y2="60" stroke="#6C3483" stroke-width="4" stroke-linecap="round"/>
+  <line x1="32" y1="50" x2="34" y2="60" stroke="#6C3483" stroke-width="4" stroke-linecap="round"/>
+</svg>

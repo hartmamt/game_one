@@ -1,0 +1,13 @@
+<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Castle wall tile -->
+  <rect width="64" height="64" fill="#34495E"/>
+  <!-- Brick pattern -->
+  <rect x="2" y="2" width="28" height="14" fill="#4A5F7F" stroke="#2C3E50" stroke-width="1"/>
+  <rect x="34" y="2" width="28" height="14" fill="#4A5F7F" stroke="#2C3E50" stroke-width="1"/>
+  <rect x="2" y="18" width="28" height="14" fill="#3E5266" stroke="#2C3E50" stroke-width="1"/>
+  <rect x="34" y="18" width="28" height="14" fill="#3E5266" stroke="#2C3E50" stroke-width="1"/>
+  <rect x="2" y="34" width="28" height="14" fill="#4A5F7F" stroke="#2C3E50" stroke-width="1"/>
+  <rect x="34" y="34" width="28" height="14" fill="#4A5F7F" stroke="#2C3E50" stroke-width="1"/>
+  <rect x="2" y="50" width="28" height="12" fill="#3E5266" stroke="#2C3E50" stroke-width="1"/>
+  <rect x="34" y="50" width="28" height="12" fill="#3E5266" stroke="#2C3E50" stroke-width="1"/>
+</svg>

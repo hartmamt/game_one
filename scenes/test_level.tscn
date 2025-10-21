@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=3 uid="uid://testlevel123"]
+
+[ext_resource type="PackedScene" uid="uid://c3q7n8s1xh9re" path="res://scenes/player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://dc3m7k8v2n1qp" path="res://scenes/hud.tscn" id="2_hud"]
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+offset_right = 2560.0
+offset_bottom = 1440.0
+color = Color(0.12, 0.08, 0.15, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector2(500, 500)
+
+[node name="HUD" parent="." instance=ExtResource("2_hud")]
+
+[node name="Ground" type="StaticBody2D" parent="."]
+collision_layer = 4
+
+[node name="Platform1" type="ColorRect" parent="Ground"]
+offset_left = 200.0
+offset_top = 600.0
+offset_right = 1800.0
+offset_bottom = 650.0
+color = Color(0.2, 0.3, 0.4, 1)
+
+[sub_resource type="RectangleShape2D" id="floor_shape"]
+size = Vector2(1600, 50)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(1000, 625)
+shape = SubResource("floor_shape")
+
+[sub_resource type="RectangleShape2D" id="platform2_shape"]
+size = Vector2(600, 50)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Ground"]
+position = Vector2(500, 825)
+shape = SubResource("platform2_shape")
+
+[sub_resource type="RectangleShape2D" id="platform3_shape"]
+size = Vector2(600, 50)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Ground"]
+position = Vector2(1500, 825)
+shape = SubResource("platform3_shape")
+
+[sub_resource type="RectangleShape2D" id="floor_main_shape"]
+size = Vector2(2560, 100)
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Ground"]
+position = Vector2(1280, 1050)
+shape = SubResource("floor_main_shape")
+
+[node name="Platform2" type="ColorRect" parent="Ground"]
+offset_left = 200.0
+offset_top = 800.0
+offset_right = 800.0
+offset_bottom = 850.0
+color = Color(0.2, 0.3, 0.4, 1)
+
+[node name="Platform3" type="ColorRect" parent="Ground"]
+offset_left = 1200.0
+offset_top = 800.0
+offset_right = 1800.0
+offset_bottom = 850.0
+color = Color(0.2, 0.3, 0.4, 1)
+
+[node name="Floor" type="ColorRect" parent="Ground"]
+offset_top = 1000.0
+offset_right = 2560.0
+offset_bottom = 1100.0
+color = Color(0.15, 0.25, 0.35, 1)
+
+[node name="InfoLabel" type="Label" parent="."]
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 700.0
+offset_bottom = 250.0
+theme_override_font_sizes/font_size = 20
+text = "CASTLE EIDOLON - TEST LEVEL
+
+WASD / Arrows - Move
+SPACE - Jump
+SHIFT - Dodge Roll
+Left Click - Attack
+Right Click - Block
+
+This is using placeholder stick figure sprites!"

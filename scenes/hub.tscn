@@ -1,40 +1,139 @@
-[gd_scene load_steps=2 format=3 uid="uid://bwx9k4m5n7pq2"]
+[gd_scene load_steps=5 format=3 uid="uid://bwx9k4m5n7pq2"]
 
 [ext_resource type="PackedScene" uid="uid://c3q7n8s1xh9re" path="res://scenes/player.tscn" id="1_player"]
+[ext_resource type="Script" path="res://scripts/npcs/npc_base.gd" id="2_npc"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholder/npc_blacksmith.svg" id="3_blacksmith"]
+[ext_resource type="Texture2D" path="res://assets/sprites/placeholder/npc_merchant.svg" id="4_merchant"]
 
 [node name="Hub" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource("1_player")]
-position = Vector2(500, 500)
-
-[node name="Ground" type="StaticBody2D" parent="."]
-collision_layer = 4
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground"]
-polygon = PackedVector2Array(0, 600, 1920, 600, 1920, 620, 0, 620)
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0.15, 0.1, 0.2, 1)
+z_index = -10
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector2(960, 500)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+collision_layer = 4
+
+[node name="GroundVisual" type="ColorRect" parent="Ground"]
+offset_top = 600.0
+offset_right = 1920.0
+offset_bottom = 650.0
+color = Color(0.2, 0.3, 0.35, 1)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground"]
+polygon = PackedVector2Array(0, 600, 1920, 600, 1920, 650, 0, 650)
 
 [node name="HubLabel" type="Label" parent="."]
-offset_left = 760.0
-offset_top = 100.0
-offset_right = 1160.0
-offset_bottom = 180.0
-theme_override_font_sizes/font_size = 48
+offset_left = 660.0
+offset_top = 50.0
+offset_right = 1260.0
+offset_bottom = 130.0
+theme_override_font_sizes/font_size = 56
 text = "CASTLE ENTRANCE"
 horizontal_alignment = 1
 
 [node name="InfoLabel" type="Label" parent="."]
-offset_left = 660.0
-offset_top = 200.0
-offset_right = 1260.0
-offset_bottom = 280.0
-theme_override_font_sizes/font_size = 20
-text = "Talk to NPCs to prepare for your descent.
-Enter the castle portal when ready."
+offset_left = 560.0
+offset_top = 150.0
+offset_right = 1360.0
+offset_bottom = 230.0
+theme_override_font_sizes/font_size = 22
+text = "Press E to talk to NPCs and prepare for your descent.
+CPI will increase with every death and enemy killed!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+
+[node name="Blacksmith" type="Area2D" parent="." groups=["npc"]]
+position = Vector2(400, 550)
+script = ExtResource("2_npc")
+npc_name = "Blacksmith"
+npc_type = "blacksmith"
+
+[node name="Sprite" type="Sprite2D" parent="Blacksmith"]
+texture = ExtResource("3_blacksmith")
+
+[node name="InteractionPrompt" type="Label" parent="Blacksmith"]
+offset_left = -40.0
+offset_top = -60.0
+offset_right = 40.0
+offset_bottom = -35.0
+theme_override_font_sizes/font_size = 16
+text = "[E] Talk"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blacksmith"]
+
+[sub_resource type="CircleShape2D" id="blacksmith_interact"]
+radius = 80.0
+
+[node name="Blacksmith" parent="."]
+collision_shape = SubResource("blacksmith_interact")
+
+[node name="NameLabel" type="Label" parent="Blacksmith"]
+offset_left = -50.0
+offset_top = 40.0
+offset_right = 50.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 18
+text = "Blacksmith"
+horizontal_alignment = 1
+
+[node name="Merchant" type="Area2D" parent="." groups=["npc"]]
+position = Vector2(1520, 550)
+script = ExtResource("2_npc")
+npc_name = "Merchant"
+npc_type = "merchant"
+
+[node name="Sprite" type="Sprite2D" parent="Merchant"]
+texture = ExtResource("4_merchant")
+
+[node name="InteractionPrompt" type="Label" parent="Merchant"]
+offset_left = -40.0
+offset_top = -60.0
+offset_right = 40.0
+offset_bottom = -35.0
+theme_override_font_sizes/font_size = 16
+text = "[E] Shop"
+horizontal_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Merchant"]
+
+[sub_resource type="CircleShape2D" id="merchant_interact"]
+radius = 80.0
+
+[node name="Merchant" parent="."]
+collision_shape = SubResource("merchant_interact")
+
+[node name="NameLabel" type="Label" parent="Merchant"]
+offset_left = -50.0
+offset_top = 40.0
+offset_right = 50.0
+offset_bottom = 60.0
+theme_override_font_sizes/font_size = 18
+text = "Merchant"
+horizontal_alignment = 1
+
+[node name="CastlePortal" type="Area2D" parent="."]
+position = Vector2(960, 400)
+
+[node name="PortalVisual" type="ColorRect" parent="CastlePortal"]
+offset_left = -60.0
+offset_top = -80.0
+offset_right = 60.0
+offset_bottom = 80.0
+color = Color(0.5, 0.2, 0.7, 0.6)
+
+[node name="PortalLabel" type="Label" parent="CastlePortal"]
+offset_left = -80.0
+offset_top = -100.0
+offset_right = 80.0
+offset_bottom = -75.0
+theme_override_font_sizes/font_size = 20
+text = "ENTER CASTLE"
+horizontal_alignment = 1

@@ -1,0 +1,18 @@
+<svg width="48" height="56" xmlns="http://www.w3.org/2000/svg">
+  <!-- Ghost enemy - Crypt Shade -->
+  <defs>
+    <radialGradient id="ghostGlow">
+      <stop offset="0%" style="stop-color:#9370DB;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#4B0082;stop-opacity:0.3" />
+    </radialGradient>
+  </defs>
+  <!-- Ghost body -->
+  <ellipse cx="24" cy="28" rx="18" ry="24" fill="url(#ghostGlow)" stroke="#6A5ACD" stroke-width="1.5"/>
+  <!-- Wavy bottom -->
+  <path d="M 8 42 Q 14 46 18 42 T 24 42 T 30 42 T 40 42 L 40 50 Q 32 46 24 50 T 8 50 Z" fill="url(#ghostGlow)" stroke="#6A5ACD" stroke-width="1"/>
+  <!-- Spooky eyes -->
+  <ellipse cx="18" cy="22" rx="4" ry="6" fill="#00FFFF" opacity="0.9"/>
+  <ellipse cx="30" cy="22" rx="4" ry="6" fill="#00FFFF" opacity="0.9"/>
+  <!-- Mouth -->
+  <ellipse cx="24" cy="34" rx="3" ry="4" fill="#4B0082" opacity="0.8"/>
+</svg>
